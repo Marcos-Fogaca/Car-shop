@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>FG Sellection</title>
+</head>
+<body>
+    <header>
+        <img src="img/logo.png" alt="logo fg">
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>Carros</li>
+                <li>Fale Conosco</li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <div class="list">
+            <div class="item active">
+                <div class="car-img">
+                    <img src="img/carro 1.png" alt="imagem carro"> 
+                </div>
+                <div class="content">
+                    <p class="car-information">
+                        Unico Dono
+                    </p>
+                    <h2>
+                      Porsche 911 Turbo
+                    </h2>
+                    <p class="description">
+                        O Porsche 911 Turbo não é apenas um carro, é uma obra-prima da engenharia automotiva. Criado para quem busca o equilíbrio perfeito entre potência, sofisticação e adrenalina, ele redefine o que significa estar ao volante de um ícone.
+                    </p>
+                    <button class="information">
+                        Saiba Mais
+                    </button>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="car-img">
+                    <img src="img/carro 2.png" alt="imagem carro"> 
+                </div>
+                <div class="content">
+                    <p class="car-information">
+                        Unico Dono
+                    </p>
+                    <h2>
+                      Lamborghini
+                    </h2>
+                    <p class="description">
+                        agora uma lamborgini
+Prepare-se para conhecer a Lamborghini Huracán EVO, uma joia da engenharia automotiva que combina a tradição italiana com inovação de ponta. Este supercarro é um símbolo de potência, elegância e performance, criado para quem busca uma experiência de condução única e inesquecível.
+                    </p>
+                    <button class="information">
+                        Saiba Mais
+                    </button>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="car-img">
+                    <img src="img/carro 3.png" alt="imagem carro"> 
+                </div>
+                <div class="content">
+                    <p class="car-information">
+                        Conversível
+                    </p>
+                    <h2>
+                      Ferrari
+                    </h2>
+                    <p class="description">
+                       
+Imagine-se ao volante de uma Ferrari, onde a sofisticação encontra o poder e a tradição se entrelaça com a inovação. Estou prestes a apresentar a você uma obra-prima da engenharia automotiva que não só redefine o que significa dirigir, mas também celebra a paixão e a performance em sua forma mais pura: o Ferrari 488 GTB.
+                    </p>
+                    <button class="information">
+                        Saiba Mais
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="arrows">
+          <button><img src="img/Arrow.png" alt="seta esquerda"></button>
+          <button><img src="img/Arrow.png" alt="seta direita"></button>  
+        </div>
+        <div class="indicators">
+            <div class="number">01</div>
+            <ul>
+                <li class="active"></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </section>
+
+  
+    <script>
+        let currentIndex = 0;
+        const items = document.querySelectorAll('.list .item');
+        const totalItems = items.length;
+        const indicators = document.querySelectorAll('.indicators ul li');
+        const arrows = document.querySelectorAll('.arrows button');
+
+        function updateDisplay() {
+            items.forEach((item, index) => {
+                if (index === currentIndex) {
+                    item.style.transform = 'translateX(0)';
+                } else if (index < currentIndex) {
+                    item.style.transform = 'translateX(-100vw)';
+                } else {
+                    item.style.transform = 'translateX(100vw)';
+                }
+            });
+
+            indicators.forEach((indicator, index) => {
+                if (index === currentIndex) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+
+            const numberDisplay = document.querySelector('.indicators .number');
+            numberDisplay.innerText = `0${currentIndex + 1}`;
+        }
+
+        function showNext() {
+            currentIndex = (currentIndex + 1) % totalItems;
+            updateDisplay();
+        }
+
+        function showPrevious() {
+            currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+            updateDisplay();
+        }
+
+        arrows[0].addEventListener('click', showPrevious);
+        arrows[1].addEventListener('click', showNext);
+
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                currentIndex = index;
+                updateDisplay();
+            });
+        });
+
+        updateDisplay();
+    </script>
+</body>
+</html>
